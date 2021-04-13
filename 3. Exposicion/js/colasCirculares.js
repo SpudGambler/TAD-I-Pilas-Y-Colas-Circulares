@@ -78,20 +78,20 @@ class Queue {
         let arrayAux = [];
         if(this.begin === this.end && this.queue[this.begin] !== null){
             arrayAux.push(this.queue[this.begin]);
-            console.log("Gay");
         }else{
-            for (let i = this.begin; i !== this.end; i=i) {
-                arrayAux.push(this.queue[i]);
-                if(i === this.size - 1){
-                    i = 0;
-                    if( i === this.end){
-                        arrayAux.push(this.queue[i]);
+            let index = this.begin;
+            while(index !== this.end){
+                arrayAux.push(this.queue[index]);
+                if(index === this.size - 1){
+                    index = 0;
+                    if( 0 === this.end){
+                        arrayAux.push(this.queue[index]);
                     }
                 }else{
-                    if( i+1 === this.end){
-                        arrayAux.push(this.queue[i+1]);
+                    if( index+1 === this.end){
+                        arrayAux.push(this.queue[index+1]);
                     }
-                    i++;
+                    index++;
                 }
             }
         }
@@ -102,16 +102,16 @@ class Queue {
 
 let theQueue = new Queue(5);
 theQueue.addElement("A");
-    theQueue.addElement("B");
-    theQueue.addElement("C");
-    theQueue.addElement("D");
-    theQueue.addElement("E");
-    theQueue.removeElement();
-    theQueue.removeElement();
-    theQueue.removeElement();
-    theQueue.removeElement();
-    theQueue.addElement("F");
-    theQueue.addElement("G");
+theQueue.addElement("B");
+theQueue.addElement("C");
+theQueue.addElement("D");
+theQueue.addElement("E");
+theQueue.removeElement();
+theQueue.removeElement();
+theQueue.removeElement();
+theQueue.removeElement();
+theQueue.addElement("F");
+theQueue.addElement("G");
 
 function example3(){
     console.log(theQueue);
