@@ -3,24 +3,21 @@ class Queue {
     constructor (size) {
 
         this.queue = new Array(size);
-        for (let i = 0; i < size; i++) {
-            this.queue[i] = null;
-            
-        }
+        this.queue.forEach(i => {
+            i = null;
+        });
         this.begin = 0;
         this.end = 0;
-        this.size = size;
-
     }
 
     addElement (newElement) {
         if(!this.queue[this.begin]){
-            this.queue[0] = newElement;
+            this.queue[this.begin] = newElement;
         }else{
-            if(this.end+1 === this.begin || (this.end+1 === this.size && this.begin === 0)){
+            if(this.end+1 === this.begin || (this.end+1 === this.queue.length && this.begin === 0)){
                 return undefined;
             }else{
-                if(this.end === this.size-1){
+                if(this.end === this.queue.length-1){
                     this.queue[0] = newElement;
                     this.end = 0;
                 }else{
@@ -33,16 +30,21 @@ class Queue {
     }
 
     removeElement () {
+        //Revisar que no este vacio
         if(!this.queue[this.begin]){
             return undefined;
         }
+
+        //Verificar si hay solo una posicion
         if(this.begin === this.end){
             this.queue[this.begin] = null;
             return this.queue;
         }else{
             this.queue[this.begin] = null;
         }
-        if(this.begin === this.size-1){
+
+        //Aumentar this.begin en uno o mandarlo al inicio
+        if(this.begin === this.queue.length-1){
             this.begin = 0;
         }else{
             this.begin++;
@@ -82,7 +84,7 @@ class Queue {
             let index = this.begin;
             while(index !== this.end){
                 arrayAux.push(this.queue[index]);
-                if(index === this.size - 1){
+                if(index === this.queue.length - 1){
                     index = 0;
                     if( 0 === this.end){
                         arrayAux.push(this.queue[index]);
@@ -113,7 +115,9 @@ theQueue.removeElement();
 theQueue.addElement("F");
 theQueue.addElement("G");
 
+
 function example3(){
     console.log(theQueue);
     console.log(theQueue.printQueue());
+    console.log(theQueue.sizeQueue());
 }
