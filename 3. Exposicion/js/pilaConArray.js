@@ -13,6 +13,9 @@ class PilaConArray{
     }
 
     peek(){
+        if(this.pila.length === 0){
+            return undefined;
+        }
         return this.pila[this.pila.length - 1];
     }
 
